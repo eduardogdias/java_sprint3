@@ -1,5 +1,6 @@
 package br.com.fiap.sprint3.model.dto.zona;
 
+import br.com.fiap.sprint3.model.entity.Zona;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,4 +27,11 @@ public class ZonaRequestDTO {
     @NotNull(message = "O ID do pátio é obrigatório")
     private Integer patioId;
 
+	public ZonaRequestDTO(Zona zona) {
+		this.tipo = zona.getTipo();
+		this.qtdVaga = zona.getQtdVaga();
+		this.patioId = zona.getPatio().getId();
+	}
+
+    
 }

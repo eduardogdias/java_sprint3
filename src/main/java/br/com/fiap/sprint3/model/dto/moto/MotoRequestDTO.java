@@ -1,5 +1,6 @@
 package br.com.fiap.sprint3.model.dto.moto;
 
+import br.com.fiap.sprint3.model.entity.Moto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,11 @@ public class MotoRequestDTO {
     @NotBlank(message = "O modelo da moto é obrigatório")
     private String modelo;
 
+    public MotoRequestDTO(Moto moto) {
+    	this.placa = moto.getPlaca();
+    	this.chassi = moto.getChassi();
+    	this.modelo = moto.getModelo();
+    }
 }
 
 

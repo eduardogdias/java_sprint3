@@ -27,7 +27,7 @@ public class Sensor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_patio")
+    @Column(name = "id_sensor")
     private Integer id;
 
     @Column(name = "localizacao_sensor", nullable = false, length = 50)

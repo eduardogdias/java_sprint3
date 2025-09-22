@@ -25,7 +25,7 @@ public class ZonaService {
     private PatioRepository patioRepository;
 
     
-    public List<ZonaResponseDTO> listarZonas() {
+    public List<ZonaResponseDTO> listar() {
         return zonaRepository.findAll().stream()
                 .map(ZonaResponseDTO::new)
                 .collect(Collectors.toList());

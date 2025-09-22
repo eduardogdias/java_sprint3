@@ -26,7 +26,7 @@ public class SensorWebController {
 	@GetMapping("/cadastrar")
 	public String cadastrar(Model model) {
 		model.addAttribute("sensor", new Sensor());
-		return "sensor-form";
+		return "sensor/sensor-form";
 	}
 	
 	@PostMapping("/salvar")
@@ -49,7 +49,7 @@ public class SensorWebController {
 	public String listar(Model model) {
 		List<SensorResponseDTO> sensores = sensorService.listar();
 		model.addAttribute("sensores", sensores);
-		return "sensor-lista";
+		return "sensor/sensor-lista";
 	}
 
 	
@@ -57,11 +57,7 @@ public class SensorWebController {
 	public String editar(@PathVariable Integer id, Model model) {
 		SensorResponseDTO sensor = sensorService.buscarPorId(id);
 		model.addAttribute("sensor", sensor);
-		System.out.println(sensor.getId());
-		System.out.println(sensor.getLocalizacao());
-		System.out.println(sensor.getData());
-		System.out.println(sensor.getHora());
-		return "sensor-form";
+		return "sensor/sensor-form";
 	}
 	
 	

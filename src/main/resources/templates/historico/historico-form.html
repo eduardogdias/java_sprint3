@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cadastro de Sensores</title>
+  <title>Cadastro de Históricos</title>
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
@@ -12,7 +12,7 @@
     <div th:replace="fragments/header :: header"></div>
 
 	<!-- navbar -->
-    <div th:replace="fragments/navbar :: navbar('sensores')"></div>
+    <div th:replace="fragments/navbar :: navbar('historicos')"></div>
     
     <!-- sidebar -->
     <div th:replace="fragments/sidebar :: sidebar"></div>
@@ -21,20 +21,23 @@
     <!-- main  -->
     <main class="content">
       <div class="container">
-        <h1 th:text="${sensor.id == null} ? 'Cadastro de Sensores' : 'Editar Sensor'"></h1>
+        <h1 th:text="${historico.id == null} ? 'Cadastro de Históricos' : 'Editar Histórico'"></h1>
 
-        <form th:action="@{/web/sensores/salvar}" th:object="${sensor}" method="post">
+        <form th:action="@{/web/historicos/salvar}" th:object="${historico}" method="post">
           <input type="hidden" th:field="*{id}" />
 
-          <label>Localização:</label>
-          <input type="text" th:field="*{localizacao}" required />
+          <label>Posição:</label>
+          <input type="text" th:field="*{posicao}" required />
 
-          <label>Data:</label>
-          <input type="text" th:field="*{data}" required />
+          <label>Moto Id:</label>
+          <input type="text" th:field="*{moto}" required />
 
-          <label>Hora:</label>
-          <input type="text" th:field="*{hora}" required />
+          <label>Zona Id:</label>
+          <input type="text" th:field="*{zona}" required />
 
+		  <label>Sensor Id:</label>
+          <input type="text" th:field="*{sensor}" required />
+          
           <button type="submit">Salvar</button>
         </form>
       </div>

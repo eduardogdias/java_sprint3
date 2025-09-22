@@ -29,7 +29,7 @@ public class Historico {
     private Integer id;
 
     @Column(name = "posicao_hist", nullable = false)
-    private int posicao;
+    private Integer posicao;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_moto", nullable = false)

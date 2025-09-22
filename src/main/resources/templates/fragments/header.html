@@ -1,13 +1,17 @@
 <header th:fragment="header">
     <div class="header">
         <!-- Esquerda -->
-        <button class="btn" id="btnOpcoes">Opção</button>
+        <button class="btn" id="btnOpcoes">
+        	<img th:src="@{/img/menu.png}" alt="Menu">
+        </button>
 
         <!-- Centro -->
         <div class="title">MottuMap</div>
 
         <!-- Direita -->
-        <button class="btn" id="btnSair">Sair</button>
+        <button class="btn" id="btnSair">
+        	<img th:src="@{/img/sair.png}" alt="Sair">
+        </button>
     </div>
 
     <!-- Import CSS e JS -->

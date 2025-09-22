@@ -34,12 +34,12 @@ public class PatioController {
 
     @GetMapping
     public ResponseEntity listar() {
-        return ResponseEntity.ok(patioService.listarPatios());
+        return ResponseEntity.ok(patioService.listar());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity buscarPorId(@PathVariable Integer id) {
-        PatioResponseDTO dto = patioService.buscarPatioPorId(id);
+        PatioResponseDTO dto = patioService.buscarPorId(id);
         if (dto != null) {
             return ResponseEntity.ok(dto);
         } else {
@@ -49,13 +49,13 @@ public class PatioController {
 
     @PostMapping
     public ResponseEntity criar(@RequestBody @Valid PatioRequestDTO request) {
-        PatioResponseDTO dto = patioService.criarPatio(request);
+        PatioResponseDTO dto = patioService.criar(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity atualizar(@PathVariable Integer id, @RequestBody @Valid PatioRequestDTO request) {
-        PatioResponseDTO dto = patioService.atualizarPatio(id, request);
+        PatioResponseDTO dto = patioService.atualizar(id, request);
         if (dto != null) {
             return ResponseEntity.ok(dto);
         } else {
@@ -65,7 +65,7 @@ public class PatioController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deletar(@PathVariable Integer id) {
-        boolean deleted = patioService.deletarPatio(id);
+        boolean deleted = patioService.deletar(id);
         if (deleted) {
             return ResponseEntity.ok(Map.of("mensagem", "Pátio com ID " + id + " deletado com sucesso."));
         } else {

@@ -1,5 +1,6 @@
 package br.com.fiap.sprint3.model.dto.historico;
 
+import br.com.fiap.sprint3.model.entity.Historico;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,4 +24,14 @@ public class HistoricoRequestDTO {
 
     @NotNull(message = "O ID do sensor é obrigatório")
     private Integer sensorId;
+
+	public HistoricoRequestDTO(Historico historico) {
+		this.posicao = historico.getPosicao();
+		this.motoId = historico.getMoto().getId();
+		this.zonaId = historico.getZona().getId();
+		this.sensorId = historico.getSensor().getId();
+	}
+    
+    
+    
 }

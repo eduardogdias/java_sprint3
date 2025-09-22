@@ -19,7 +19,7 @@ public class PatioService {
     private PatioRepository patioRepository;
 
     //listar
-    public List<PatioResponseDTO> listarPatios() {
+    public List<PatioResponseDTO> listar() {
         return patioRepository.findAll()
                 .stream()
                 .map(PatioResponseDTO::new)
@@ -28,7 +28,7 @@ public class PatioService {
 
     
     //buscar
-    public PatioResponseDTO buscarPatioPorId(Integer id) {
+    public PatioResponseDTO buscarPorId(Integer id) {
         return patioRepository.findById(id)
                 .map(PatioResponseDTO::new) //se o objeto foi encontrado, transforma ele em um PatioResponseDTO (converte a entidade para um DTO de resposta)
                 .orElse(null); //se nao for encontrado retona null
@@ -37,7 +37,7 @@ public class PatioService {
     
     //criar
     @Transactional   // @Transactional -> faz um rollback na alteracoes se o metodo gerar excecao 
-    public PatioResponseDTO criarPatio(PatioRequestDTO request) {
+    public PatioResponseDTO criar(PatioRequestDTO request) {
         Patio patio = new Patio();
         patio.setNome(request.getNome());
         patio.setEndereco(request.getEndereco());
@@ -48,7 +48,7 @@ public class PatioService {
     
     //atualizar
     @Transactional
-    public PatioResponseDTO atualizarPatio(Integer id, PatioRequestDTO request) {
+    public PatioResponseDTO atualizar(Integer id, PatioRequestDTO request) {
         Optional<Patio> optional = patioRepository.findById(id); // optional -> retorna o patio se encontrado, ou null
         if (optional.isPresent()) {
             Patio patio = optional.get();
@@ -63,7 +63,7 @@ public class PatioService {
     
     //deletar
     @Transactional
-    public boolean deletarPatio(Integer id) {
+    public boolean deletar(Integer id) {
         Optional<Patio> patio = patioRepository.findById(id);
         if (patio.isPresent()) {
             patioRepository.delete(patio.get());

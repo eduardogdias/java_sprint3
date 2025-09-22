@@ -31,7 +31,7 @@ public class ZonaController {
     
     @GetMapping
     public ResponseEntity listarZonas() {
-        return ResponseEntity.ok(zonaService.listarZonas());
+        return ResponseEntity.ok(zonaService.listar());
     }
 
     

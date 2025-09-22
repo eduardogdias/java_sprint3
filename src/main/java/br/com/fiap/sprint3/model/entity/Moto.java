@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity()
+@Entity
 @Table(name = "TB_MOTO")
 @Getter
 @Setter
