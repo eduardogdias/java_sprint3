@@ -27,16 +27,29 @@
           <input type="hidden" th:field="*{id}" />
 
           <label>Posição:</label>
-          <input type="text" th:field="*{posicao}" required />
+          <input type="text" th:field="*{posicao}" 
+           pattern="\d{10}" 
+           title="A posição vai de 0 até 99" 
+           required 
+           placeholder="Digite a posição (vaga) da moto" />
 
           <label>Moto Id:</label>
-          <input type="text" th:field="*{moto}" required />
+          <input type="number" th:field="*{moto}" 
+           min="1"
+           required 
+           placeholder="Digite o ID da moto" />
 
           <label>Zona Id:</label>
-          <input type="text" th:field="*{zona}" required />
+          <input type="number" th:field="*{zona}" 
+           min="1"
+           required 
+           placeholder="Digite o ID da zona" />
 
 		  <label>Sensor Id:</label>
-          <input type="text" th:field="*{sensor}" required />
+          <input type="number" th:field="*{sensor}" 
+           min="1"
+           required 
+           placeholder="Digite o ID do sensor" />
           
           <button type="submit">Salvar</button>
         </form>

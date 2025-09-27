@@ -27,13 +27,22 @@
           <input type="hidden" th:field="*{id}" />
 
           <label>Tipo:</label>
-          <input type="text" th:field="*{tipo}" required />
+          <input type="text" th:field="*{tipo}"
+          minlength="3" 
+          placeholder="Digite o tipo desta zona"
+          required  />
 
           <label>Quantidade de Vagas:</label>
-          <input type="text" th:field="*{qtdVaga}" required />
+          <input type="number" th:field="*{qtdVaga}"
+           min="1"
+           required 
+           placeholder="Digite a quantidade de vagas da zona" />
 
           <label>Pátio Id:</label>
-          <input type="text" th:field="*{patio}" required />
+          <input type="number" th:field="*{patio}" 
+		   min="1"
+           required 
+           placeholder="Digite o ID do pátio que esta zona pertence" />
 
           <button type="submit">Salvar</button>
         </form>

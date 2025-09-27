@@ -27,14 +27,27 @@
           <input type="hidden" th:field="*{id}" />
 
           <label>Placa:</label>
-          <input type="text" th:field="*{placa}" required />
+          <input type="text" th:field="*{placa}" 
+           pattern="\d{7}" 
+           title="A placa deve ter exatamente 7 dígitos"
+           required 
+           placeholder="Digite o número da placa" />
 
           <label>Chassi:</label>
-          <input type="text" th:field="*{chassi}" required />
+          <input type="text" th:field="*{chassi}" 
+           pattern="\d{17}" 
+           title="O número do chassi deve ter exatamente 17 dígitos" 
+           required 
+           placeholder="Digite o número do chassi da moto" />
 
           <label>Modelo:</label>
-          <input type="text" th:field="*{modelo}" required />
-
+		  <select th:field="*{modelo}" required>
+		  	<option value="">Selecione um modelo</option>
+		  	<option value="Pop">Pop</option>
+		  	<option value="Sport">Sport</option>
+		  	<option value="E">E</option>
+		  </select>
+		  
           <button type="submit">Salvar</button>
         </form>
       </div>

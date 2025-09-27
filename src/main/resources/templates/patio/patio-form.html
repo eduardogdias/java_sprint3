@@ -27,10 +27,16 @@
           <input type="hidden" th:field="*{id}" />
 
           <label>Nome:</label>
-          <input type="text" th:field="*{nome}" required />
+          <input type="text" th:field="*{nome}" 
+          minlength="3" 
+          placeholder="Digite o nome do pátio"
+          required />
 
           <label>Endereço:</label>
-          <input type="text" th:field="*{endereco}" required />
+          <input type="text" th:field="*{endereco}" 
+          minlength="5" 
+          placeholder="Digite o endereço do pátio"
+          required />
 
           <button type="submit">Salvar</button>
         </form>

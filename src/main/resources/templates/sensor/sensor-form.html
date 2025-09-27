@@ -27,13 +27,16 @@
           <input type="hidden" th:field="*{id}" />
 
           <label>Localização:</label>
-          <input type="text" th:field="*{localizacao}" required />
+          <input type="text" th:field="*{localizacao}" 
+          minlength="3" 
+          required 
+          placeholder="Digite a localização do sensor" />
 
           <label>Data:</label>
-          <input type="text" th:field="*{data}" required />
+          <input type="date" th:field="*{data}" required />
 
           <label>Hora:</label>
-          <input type="text" th:field="*{hora}" required />
+          <input type="time" th:field="*{hora}" required />
 
           <button type="submit">Salvar</button>
         </form>

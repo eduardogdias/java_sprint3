@@ -55,7 +55,7 @@ label {
   font-weight: 600;
 }
 
-input[type="text"], input[type="email"], input[type="tel"] {
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="time"], input[type="number"], select {
   padding: 10px;
   border: 1px solid #d6d6d6;
   border-radius: 6px;
