@@ -1,32 +1,63 @@
 # MottuMap
  
-MottuMap é um projeto desenvolvido com visão computacional e leitura RFID para facilitar a localização e gestão das motos nos páitos da Mottu.
+MottuMap é um projeto que utiliza visão computacional e tecnologia RFID para facilitar a localização e a gestão das motos nos pátios da Mottu.
+ 
+Cada moto será equipada com uma etiqueta RFID, que ao ser lida por sensores instalados nas zonas do pátio, gera um novo registro no histórico de movimentação da moto. Isso permite rastrear em tempo real a zona em que a moto está localizada.
+ 
+Além disso, para uma identificação ainda mais precisa, o sistema conta com câmeras de visão computacional que mapeiam as vagas dentro de cada zona, permitindo associar a moto a uma posição específica (vaga) dentro da zona.
+ 
+Com isso, será possível acompanhar o histórico de movimentação de cada moto, sabendo por onde ela passou e onde está atualmente.
+
+**Esta API desenvolvida com Spring Boot conta com**: um sistema de Login e Logout, usuários salvos no banco, gerenciamento de entidades pela Web, versionamento do banco de dados e mais tecnologias, acompanhe a documentação completa abaixo.
  
 ---
  
-**Descrição do Projeto**
- 
-Cada moto será equipada com uma etiqueta RFID, que ao ser lida por sensores instalados nas zonas do pátio, gera um novo registro no histórico de movimentação da moto. Isso permite rastrear em tempo real a zona atual onde a moto está localizada.
- 
-Além disso, para uma identificação ainda mais precisa, o sistema conta com câmeras de visão computacional que mapeiam as vagas dentro de cada zona,  permitindo associar a moto a uma posição específica (vaga) dentro da zona.
- 
-Com isso, é possível acompanhar o histórico de movimentação de cada moto, sabendo por onde ela passou e onde está atualmente.
- 
+## Interface Web
+
+Veja abaixo como ficou o resultado das telas para gerenciar cada uma das entidades (Cadastro e Listagem).
+- É possível editar ou excluir registros. 
+- O formulário de cadastro/edição conta com validação nos campos.
+
+![](images/cadastro.png)
+![](images/listagem.png)
+
 ---
- 
+
+## Acesso / Usuários
+
+Foram definidos dois usuários, assim que a aplicação inicia, através de Migrations com **Flyway**:
+- **ADMIN:** tem permissão pra fazer o CRUD completo e acessar todas as telas do sistema.
+- **USER:** só pode acessar páginas de listagem e fazer requisições do tipo GET. 
+
+Para acessar as telas, basta logar com um desses usuários:
+| Email             | Senha     | Role (permissão)  |
+| ----------------- | --------- | ----------------- |
+| admin@mottu.com   | 123456    | ADMIN             |
+| user@mottu.com    | 123456    | USER              |
+
+![](images/login.png)
+
+Para acessar via Postman, coloque o Email e Senha na sessão de Basic Auth antes de cada requisição:
+
+![](images/loginPostman.png)
+
+**Obs:** todos os endpoints são acessados via **`localhost:8080`**
+
+---
+
 ## Configuração do Spring Initializr (dependências adicionadas para a Sprint 3)
-![Imagem do projeto](imagem_git/projeto.png)
+![Imagem do projeto](images/springinitializr.png)
  
 **Dependências:**
-- Spring Web: Por se tratar de uma API Rest;
-- Spring Boot DevTools: Recursos que ajudam na produtividade;
-- Spring Data JPA: Acessar e manipular bancos de dados;
-- H2 Database: Banco de dados em memória;
-- Lombok: Gerar automaticamente códigos repetitivos (mais otimizado);
-- Validation: Validações com Bean Validation usadas nos DTOs.
-- Thymeleaf: Renderização de página HTML no navegador
-- Spring Security: Autenticação e acesso aos endpoints
-- Flyway: Versionamento do banco de dados
+- Spring Web: Por se tratar de uma API Rest.
+- Spring Boot DevTools: Recursos que ajudam na produtividade.
+- Spring Data JPA: Acessar e manipular bancos de dados.
+- Lombok: Gerar automaticamente códigos repetitivos (mais otimizado).
+- Validation: Biblioteca de validação usada nos DTOs.
+- Oracle Driver: Banco de dados Oracle.
+- Thymeleaf: Renderização de página HTML no navegador.
+- Spring Security: Autenticação e acesso aos endpoints.
+- Flyway: Versionamento do banco de dados.
  
 **Estrutura do Banco de Dados:**
 ![](images/banco.png)
@@ -37,7 +68,7 @@ Com isso, é possível acompanhar o histórico de movimentação de cada moto, s
  
 ## Pacotes utilizados e suas funções
  
-### Modelo MVC
+### Arquitetura: MVC
  
 **1. Model:**
 - Entity → Mapeia tabelas e relacionamentos no banco.
@@ -48,7 +79,7 @@ Com isso, é possível acompanhar o histórico de movimentação de cada moto, s
  
 **2. View:**
 - Static → CSS, JS e imagens
-- Templates → Fragmenos e Páginas HTML
+- Templates → Fragmentos e Páginas HTML
  
 **3. Controller:**
 - Controller HTTP → Expõe endpoints REST e manipula requisições/respostas.
@@ -119,11 +150,11 @@ Com isso, é possível acompanhar o histórico de movimentação de cada moto, s
  
 | Método | URI                       | Descrição                                       | View retornada            |
 |--------|---------------------------|-------------------------------------------------|---------------------------|
-| GET    | `/web/patios/listar`      | Lista todas os patios                           | `patio/patio-lista`      |
-| GET    | `/web/patios/salvar`  | Exibe o formulário de cadastro/edição           | `patio/patio-form`        |
+| GET    | `/web/patios/listar`      | Lista todos os patios                           | `patio/patio-lista`      |
+| GET    | `/web/patios/cadastrar`  | Exibe o formulário de cadastro/edição           | `patio/patio-form`        |
 | GET    | `/web/patios/editar/{id}` | Exibe o formulário preenchido para edição       | `patio/patio-form`        |
-| POST   | `/web/patios/salvar`      | Cadastra patio (novo ou edição) e redireciona      | Redirect → `/listar`      |
-| GET    | `/web/patios/excluir/{id}`| Exclui patio e redireciona para listagem        | Redirect → `/listar`      |
+| POST   | `/web/patios/salvar`      | Cadastra pátio (novo ou edição) e redireciona      | Redirect → `/listar`      |
+| GET    | `/web/patios/excluir/{id}`| Exclui pátio e redireciona para listagem        | Redirect → `/listar`      |
  
 **2. Zona:**
  
@@ -150,22 +181,22 @@ Com isso, é possível acompanhar o histórico de movimentação de cada moto, s
  
 | Método | URI                       | Descrição                                       | View retornada            |
 |--------|---------------------------|-------------------------------------------------|---------------------------|
-| GET    | `/web/sensores/listar`      | Lista todas os sensores                           | `sensor/sensor-lista`      |
+| GET    | `/web/sensores/listar`      | Listar todos os sensores                           | `sensor/sensor-lista`      |
 | GET    | `/web/sensores/cadastrar`  | Exibe o formulário de cadastro/edição           | `sensor/sensor-form`        |
 | GET    | `/web/sensores/editar/{id}` | Exibe o formulário preenchido para edição       | `sensor/sensor-form`        |
 | POST   | `/web/sensores/salvar`      | Cadastra sensores (novo ou edição) e redireciona      | Redirect → `/listar`      |
-| GET    | `/web/sensores/excluir/{id}`| Exclui patsensoresio e redireciona para listagem        | Redirect → `/listar`      |
+| GET    | `/web/sensores/excluir/{id}`| Exclui sensor e redireciona para listagem        | Redirect → `/listar`      |
  
  
 **5. Historico:**
  
 | Método | URI                       | Descrição                                       | View retornada            |
 |--------|---------------------------|-------------------------------------------------|---------------------------|
-| GET    | `/web/historicos/listar`      | Lista todas os historicos                           | `historico/historico-lista`      |
+| GET    | `/web/historicos/listar`      | Lista todos os historicos                           | `historico/historico-lista`      |
 | GET    | `/web/historicos/cadastrar`  | Exibe o formulário de cadastro/edição           | `historico/historico-form`        |
 | GET    | `/web/historicos/editar/{id}` | Exibe o formulário preenchido para edição       | `historico/historico-form`        |
-| POST   | `/web/historicos/salvar`      | Cadastra historico (novo ou edição) e redireciona      | Redirect → `/listar`      |
-| GET    | `/web/historicos/excluir/{id}`| Exclui patio e redireciona para listagem        | Redirect → `/listar`      |
+| POST   | `/web/historicos/salvar`      | Cadastra histórico (novo ou edição) e redireciona      | Redirect → `/listar`      |
+| GET    | `/web/historicos/excluir/{id}`| Exclui histórico e redireciona para listagem        | Redirect → `/listar`      |
  
  
  
@@ -216,7 +247,7 @@ Com isso, é possível acompanhar o histórico de movimentação de cada moto, s
   "posicao": 2,
   "motoId": 2,
   "zonaId": 1,
-  "sensorId": 3
+  "sensorId": 2
 }
 ````
  
@@ -227,8 +258,9 @@ Com isso, é possível acompanhar o histórico de movimentação de cada moto, s
 1. Faça o clone desse repositório (```git clone https://github.com/eduardogdias/java_sprint3.git```);
 2. Tenha pelo menos o Java 17 (o projeto foi desenvolvido usando essa versão);
 3. Abra ele em sua IDE de preferência;
-4. Dê um Run na classe "Sprint1Application";
-5. Teste as requisições no Postman/Insomnia.
+4. Coloque as credenciais do Oracle (usuário e senha) no application.properties;
+5. Dê um Run na classe "Sprint3Application.java";
+6. Teste as requisições no Postman/Insomnia ou acessando via Web pelo `localhost:8080`.
  
 ---
  
@@ -238,3 +270,6 @@ Com isso, é possível acompanhar o histórico de movimentação de cada moto, s
  
 ---
  
+## Contato
+
+Para dúvidas, melhorias ou sugestões relacionadas ao projeto, entre em contato :)
